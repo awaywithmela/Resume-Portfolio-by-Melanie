@@ -75,7 +75,8 @@ const props = defineProps({
   showMobileWarning: { type: Boolean, default: true },
   showTooltip: { type: Boolean, default: true },
   displayOverlayContent: { type: Boolean, default: false },
-  isFocused: { type: Boolean, default: false }
+  isFocused: { type: Boolean, default: false },
+  objectFit: { type: String, default: 'cover' }
 })
 
 const figureRef = ref(null)

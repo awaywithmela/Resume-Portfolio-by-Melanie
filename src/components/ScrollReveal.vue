@@ -21,7 +21,10 @@ let observer = null
 
 onMounted(() => {
     observer = new IntersectionObserver(([entry]) => {
-        isVisible.value = entry.isIntersecting
+        if (entry.isIntersecting) {
+            isVisible.value = true
+            if (elRef.value) observer.unobserve(elRef.value)
+        }
     }, { threshold: props.threshold })
 
     if (elRef.value) {

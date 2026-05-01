@@ -30,7 +30,7 @@
                         <ul class="space-y-3">
                             <li v-for="(point, i) in selectedJob.points" :key="i" class="flex items-start gap-3">
                                 <span class="text-purple-400 mt-1.5 shrink-0">✦</span>
-                                <span class="text-sm text-slate-600 leading-relaxed">{{ point }}</span>
+                                <span class="text-xs text-slate-600 leading-relaxed">{{ point }}</span>
                             </li>
                         </ul>
 
@@ -56,32 +56,52 @@ import FolderCard from './FolderCard.vue'
 
 const experiences = [
     {
-        company: "Just Click IT Solutions",
-        role: "Full Stack Developer",
-        date: "Aug 2023 – Nov 2025",
-        location: "Remote",
+        company: "Just Click IT Solution",
+        role: "Fullstack Developer",
+        date: "2023 – 2025",
+        location: "Remote | Cebu City",
         points: [
-            "Designed responsive UI/UX layouts using Figma.",
-            "Developed user-centered web apps with modern frontend practices.",
-            "Implemented SEO optimization for search visibility.",
-            "Conducted E2E testing with Cypress.",
-            "Managed cloud deployment via cPanel.",
-            "Maintained Django-based backend systems."
+            "Designed responsive UI/UX layouts using Figma, ensuring intuitive and user-friendly interfaces.",
+            "Developed user-centered web applications using React.js and modern frontend best practices.",
+            "Implemented SEO optimization techniques to improve search engine visibility and performance.",
+            "Conducted end-to-end (E2E) testing using Cypress to ensure application reliability.",
+            "Managed cloud deployment and hosting using cPanel.",
+            "Maintained backend systems built with Python (Django REST Framework).",
+            "Handled database design, management, and optimization using MySQL."
         ],
-        tech: ["Figma", "Vue.js", "Django", "Cypress", "cPanel", "SEO"]
+        tech: ["Figma", "React.js", "SEO", "Cypress", "cPanel", "Python", "Django", "MySQL"]
     },
     {
         company: "PHINMA-CDO College",
         role: "Lead Developer & Project Manager",
-        date: "Sep 2023 – Nov 2025",
-        location: "Capstone",
+        date: "2024 – 2025",
+        location: "Cagayan De Oro",
         points: [
-            "Led development of a Reservation Monitoring System.",
-            "Managed project planning and task delegation.",
-            "Refactored 80% of codebase for performance.",
-            "API testing with Postman."
+            "Led the development of a Reservation Monitoring System using C# (ASP.NET), GraphQL, RESTful APIs, MySQL, and React.js, supporting real-time tracking of reservations.",
+            "Managed project planning, task delegation, and progress tracking using Trello, ensuring on-time delivery of key milestones.",
+            "Refactored 80% of the codebase, improving system performance by up to 40% and reducing load times significantly.",
+            "Optimized API performance, reducing response time from ~2s to under 1s for key endpoints.",
+            "Conducted API testing and validation using Postman, identifying and resolving critical issues before deployment.",
+            "Supported concurrent users and ensured system stability during peak usage."
         ],
-        tech: ["Flutter", "ReactJS", "PHP", "MySQL", "Postman"]
+        tech: ["C#", "ASP.NET", "GraphQL", "REST API", "MySQL", "React.js", "Trello", "Postman"]
+    },
+    {
+        company: "Innovuze Solution Inc.",
+        role: "Project Manager Intern",
+        date: "2025 – 2026",
+        location: "Office",
+        points: [
+            "Managed internal projects (LunchBuddies App, RevePay) using Azure DevOps.",
+            "Monitored and resolved bug tickets to improve system performance.",
+            "Used Trello to streamline team collaboration and task tracking.",
+            "Performed data scraping and analysis to assess project health.",
+            "Built dashboards in Looker Studio for data-driven reporting.",
+            "Documented Minutes of Meetings (MoM) for team alignment.",
+            "Created SOPs, SOWs, and proposals to standardize processes.",
+            "Applied prompt engineering techniques using Claude AI, Ollama, and Codex for productivity and development support."
+        ],
+        tech: ["Azure DevOps", "Trello", "Looker Studio", "Claude AI", "Ollama", "Codex"]
     }
 ]
 

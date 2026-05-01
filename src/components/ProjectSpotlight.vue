@@ -7,9 +7,9 @@
             <div class="absolute inset-0 z-0">
                 <transition name="fade" mode="out-in">
                     <div :key="currentProject.title" class="absolute inset-0 w-full h-full">
-                        <!-- Image: object-contain to fit perfectly, opacity adjusted for background fade -->
+                        <!-- Image: object-cover to fit perfectly, opacity adjusted for background fade -->
                         <img :src="currentProject.image" :alt="currentProject.title"
-                            class="w-full h-full object-contain object-bottom opacity-80 transition-transform duration-700 ease-out" />
+                            class="w-full h-full object-cover object-center opacity-80 transition-transform duration-700 ease-out" />
                         <!-- Deep Purple Gradient Overlay (Lighter for visibility) -->
                         <div
                             class="absolute inset-0 bg-linear-to-t from-[#1a0b2e] via-[#1a0b2e]/50 to-[#1a0b2e]/30 pointer-events-none">
