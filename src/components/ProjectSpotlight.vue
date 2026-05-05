@@ -123,7 +123,7 @@ const projects = [
     {
         title: "Reservation Monitoring System",
         description: "Capstone project implementing a full-scale reservation and monitoring system for campus facilities, significantly improving administrative efficiency.",
-        tech: ["Flutter", "ReactJS", "PHP"],
+        tech: ["Flutter", "ReactJS", "C#"],
         image: imgGSD,
         link: null,
     },
