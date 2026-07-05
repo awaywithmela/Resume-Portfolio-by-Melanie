@@ -9,7 +9,7 @@
         :fillOpacity="1"
       >
         <div class="px-7 py-2">
-          <span class="text-sm font-bold tracking-wide text-[#c084fc]">
+          <span class="folder-tab-title text-sm font-bold tracking-wide text-[#c084fc]">
             {{ title }}
           </span>
         </div>
@@ -164,5 +164,11 @@ onMounted(() => {
   background:
     radial-gradient(circle 16px at 0 0, transparent 15px, var(--folder-border) 15px, var(--folder-border) 16px, var(--folder-bg) 16px) left top / 16px 16px no-repeat,
     radial-gradient(circle 16px at 16px 0, transparent 15px, var(--folder-border) 15px, var(--folder-border) 16px, var(--folder-bg) 16px) right top / 16px 16px no-repeat !important;
+}
+
+/* Make tab title high-contrast purple-500 in light theme */
+.theme-light-root .folder-tab-title,
+.theme-light .folder-tab-title {
+  color: #a855f7 !important;
 }
 </style>
