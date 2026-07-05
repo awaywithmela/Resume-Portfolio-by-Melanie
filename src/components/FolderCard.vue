@@ -135,37 +135,6 @@ onMounted(() => {
   --folder-border: rgb(88 28 135 / 22%) !important;
 }
 
-/* Shifting the tab to the right by 24px in light theme */
-.theme-light-root .folder-tab-wrap,
-.theme-light .folder-tab-wrap {
-  margin-left: 24px !important;
-}
-
-/* Restore the top-left rounded corner of the card body in light theme */
-.theme-light-root .folder-card .folder-glow-card,
-.theme-light-root .folder-card .folder-glow-card::before,
-.theme-light-root .folder-card .folder-glow-card::after,
-.theme-light-root .folder-card .folder-glow-card .edge-light,
-.theme-light-root .folder-card .folder-glow-card .border-glow-inner,
-.theme-light .folder-card .folder-glow-card,
-.theme-light .folder-card .folder-glow-card::before,
-.theme-light .folder-card .folder-glow-card::after,
-.theme-light .folder-card .folder-glow-card .edge-light,
-.theme-light .folder-card .folder-glow-card .border-glow-inner {
-  border-top-left-radius: var(--border-radius) !important;
-}
-
-/* Dual inverted fillet curves (left and right) in light theme */
-.theme-light-root .folder-tab-wrap::before,
-.theme-light .folder-tab-wrap::before {
-  left: -16px !important;
-  right: -16px !important;
-  width: auto !important;
-  background:
-    radial-gradient(circle 16px at 0 0, transparent 15px, var(--folder-border) 15px, var(--folder-border) 16px, var(--folder-bg) 16px) left top / 16px 16px no-repeat,
-    radial-gradient(circle 16px at 16px 0, transparent 15px, var(--folder-border) 15px, var(--folder-border) 16px, var(--folder-bg) 16px) right top / 16px 16px no-repeat !important;
-}
-
 /* Make tab title high-contrast purple-500 in light theme */
 .theme-light-root .folder-tab-title,
 .theme-light .folder-tab-title {
