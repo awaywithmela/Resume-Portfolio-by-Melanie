@@ -2,29 +2,16 @@
 import { ref, onMounted } from 'vue'
 import BorderGlow from './design/BorderGlow.vue'
 import StarBorder from './design/StarBorder.vue'
+import TextPressure from './design/TextPressure.vue'
 
-const typedText1 = ref('')
 const typedText2 = ref('')
 const showCursor = ref(true)
 
-const part1 = "Hi!, "
 const part2 = "I'm Melanie Abalde"
-
 const typingSpeed = 100
 
 onMounted(() => {
-  let p1Index = 0
   let p2Index = 0
-
-  function typePart1() {
-    if (p1Index < part1.length) {
-      typedText1.value += part1[p1Index]
-      p1Index++
-      setTimeout(typePart1, typingSpeed)
-    } else {
-      typePart2()
-    }
-  }
 
   function typePart2() {
     if (p2Index < part2.length) {
@@ -34,8 +21,7 @@ onMounted(() => {
     }
   }
 
-  // Start typing
-  typePart1()
+  setTimeout(typePart2, 300)
 })
 </script>
 
@@ -49,14 +35,14 @@ onMounted(() => {
         <div class="h-3 w-3 rounded-full bg-yellow-200"></div>
       </div>
 
-      <!-- Social Icons (Top Right Absolute) -->
-      <div class="absolute top-8 right-8 flex items-center gap-6">
-        <div class="relative flex flex-col items-center">
-          <a href="https://www.instagram.com/mella.l_a/?hl=en" target="_blank"
-            class="absolute -top-4 left-1/2 -translate-x-1/2 text-[7px] font-bold tracking-wider text-slate-400 whitespace-nowrap">
+      <!-- Social Icons -->
+      <div class="mb-8 flex flex-wrap items-center justify-end gap-x-5 gap-y-3 md:absolute md:top-8 md:right-8 md:mb-0">
+        <div class="flex items-center gap-2">
+          <a href="https://www.instagram.com/mella.l_a/?hl=en" target="_blank" rel="noopener noreferrer"
+            class="profile-handle font-bold tracking-wider text-slate-400 whitespace-nowrap leading-none">
             @mella.l_a
           </a>
-          <a href="https://www.instagram.com/mella.l_a/?hl=en" target="_blank"
+          <a href="https://www.instagram.com/mella.l_a/?hl=en" target="_blank" rel="noopener noreferrer"
             class="text-purple-400 hover:text-purple-600 transition-colors" title="Instagram">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -65,7 +51,7 @@ onMounted(() => {
           </a>
         </div>
         <!-- Github -->
-        <a href="https://github.com/Araanna" target="_blank"
+        <a href="https://github.com/Araanna" target="_blank" rel="noopener noreferrer"
           class="text-purple-400 hover:text-purple-600 transition-colors" title="GitHub">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -73,7 +59,7 @@ onMounted(() => {
           </svg>
         </a>
         <!-- LinkedIn -->
-        <a href="https://www.linkedin.com/in/melanie-abalde-0a363a31b/" target="_blank"
+        <a href="https://www.linkedin.com/in/melanie-abalde-0a363a31b/" target="_blank" rel="noopener noreferrer"
           class="text-purple-400 hover:text-purple-600 transition-colors" title="LinkedIn">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -96,14 +82,27 @@ onMounted(() => {
         <!-- Info -->
         <div class="flex-1 space-y-4">
           <!-- Greeting Headline -->
-          <h1 class="text-4xl md:text-xl font-black text-slate-800 tracking-tight mb-2">
-            <span>{{ typedText1 }}</span>
-            <span class="text-purple-600">{{ typedText2 }}</span>
-            <span class="animate-blink text-purple-600">|</span>
+          <h1 class="font-black text-slate-100 tracking-tight mb-2 leading-snug flex items-center flex-wrap gap-x-2">
+            <span class="hi-pressure relative inline-block h-[46px] w-[92px] shrink-0 md:h-[34px] md:w-[72px]">
+              <TextPressure
+                text="Hi!,"
+                :flex="false"
+                :alpha="false"
+                :stroke="false"
+                :width="true"
+                :weight="true"
+                :italic="true"
+                textColor="#f8fafc"
+                strokeColor="#c084fc"
+                :minFontSize="28"
+              />
+            </span>
+            <span class="text-purple-600 font-extrabold">{{ typedText2 }}</span>
+            <span class="animate-blink text-purple-600 font-extrabold">|</span>
           </h1>
 
           <!-- Bio -->
-          <p class="text-sm leading-relaxed text-slate-600">
+          <p class="profile-bio text-sm leading-relaxed text-slate-600">
             I’m a BS IT graduate majoring in Software Development and Applied Analytics in Business for IT based in
             Cagayan de Oro, with a strong interest in
             building large-scale, high-impact products. I focus on developing scalable systems while bringing a
@@ -117,6 +116,7 @@ onMounted(() => {
               as="a"
               href="https://mail.google.com/mail/?view=cm&fs=1&to=mabalde2002@gmail.com"
               target="_blank"
+              rel="noopener noreferrer"
               color="#c084fc"
               speed="3.5s"
               borderRadius="10px"
@@ -142,6 +142,48 @@ onMounted(() => {
 <style scoped>
 .animate-blink {
   animation: blink 1s step-end infinite;
+}
+
+.hi-pressure :deep(.text-pressure-title) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.05em;
+  white-space: nowrap;
+}
+
+.profile-handle {
+  font-size: 11px !important;
+  line-height: 1;
+}
+
+.profile-bio {
+  font-size: 13px !important;
+  line-height: 1.65;
+}
+
+:global(.portfolio-shell.theme-light) .hi-pressure :deep(.text-pressure-title) {
+  background: linear-gradient(115deg, #050507 0%, #33343a 28%, #9ca3af 46%, #15151a 62%, #000000 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  filter: drop-shadow(0 1px 0 rgb(255 255 255 / 70%)) drop-shadow(0 10px 18px rgb(15 23 42 / 14%));
+  animation: steelShine 4.5s ease-in-out infinite;
+}
+
+:global(.portfolio-shell.theme-light) .hi-pressure :deep(.text-pressure-title span) {
+  color: transparent !important;
+}
+
+@keyframes steelShine {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 @keyframes blink {

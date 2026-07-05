@@ -141,13 +141,18 @@
 }
 
 .folder-glow-card {
+  --folder-tab-radius: 34px;
+  margin-top: -1px;
   border-top-left-radius: 0px !important;
+  border-top-right-radius: var(--folder-tab-radius) !important;
   border-color: rgba(192, 132, 252, 0.2) !important; /* purple-400 / 20% */
+  border-top-color: transparent !important;
 }
 
 .folder-glow-card::before {
   border-top-left-radius: 0px !important;
-  clip-path: polygon(var(--tab-width, 180px) 0%, 100% 0%, 100% 100%, 0% 100%, 0% 1px, var(--tab-width, 180px) 1px) !important;
+  border-top-right-radius: var(--folder-tab-radius) !important;
+  clip-path: polygon(var(--tab-width, 180px) 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0, var(--tab-width, 180px) 0) !important;
 }
 
 .folder-glow-card > .edge-light {
@@ -163,24 +168,27 @@
 
 /* Tab Glow Card (Folder Tab) */
 .tab-glow-card {
-  border-bottom-left-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
+  border-radius: 34px 34px 0 0 !important;
   border-bottom: none !important;
   border-color: rgba(192, 132, 252, 0.2) !important; /* matches card body */
   /* Push tab in 3D layering so it stacks on top of GPU-accelerated card body */
-  transform: translate3d(0, 2px, 0.02px) !important;
+  transform: translate3d(0, 1px, 0.02px) !important;
+  box-shadow: none !important;
 }
 
 .tab-glow-card::before {
+  border-radius: 34px 34px 0 0 !important;
   border-bottom-width: 0px !important;
   clip-path: inset(-80px -80px 0px -80px) !important;
 }
 
 .tab-glow-card::after {
+  border-radius: 34px 34px 0 0 !important;
   clip-path: inset(-80px -80px 0px -80px) !important;
 }
 
 .tab-glow-card > .edge-light {
+  border-radius: 34px 34px 0 0 !important;
   clip-path: inset(-80px -80px 0px -80px) !important;
 }
 

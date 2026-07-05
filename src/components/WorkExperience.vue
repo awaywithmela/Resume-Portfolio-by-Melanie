@@ -1,12 +1,12 @@
 <template>
     <FolderCard title="Work Experience">
-        <div class="flex flex-col md:flex-row gap-6">
+        <div class="work-experience-panel allow-xs flex flex-col md:flex-row gap-6">
             <!-- Sidebar (Company List) -->
             <!-- Sidebar (Company List) -->
             <div
                 class="md:w-1/3 flex md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-2 md:pb-0 border-b-0 md:border-r border-slate-200 pr-0">
                 <button v-for="(job, index) in experiences" :key="index" @click="selectedJob = job"
-                    class="group px-4 py-3 text-left text-xs font-bold tracking-wide transition-all duration-200 border-0 border-b-2 md:border-b-0 md:border-r-4 md:border-l-0 md:mr-[-2px] mb-[-1px] md:mb-0 uppercase whitespace-nowrap md:whitespace-normal"
+                    class="company-tab group px-3 py-2.5 text-left font-bold tracking-wide transition-all duration-200 border-0 border-b-2 md:border-b-0 md:border-r-4 md:border-l-0 md:mr-[-2px] mb-[-1px] md:mb-0 uppercase whitespace-nowrap md:whitespace-normal"
                     :class="selectedJob.company === job.company ? 'text-purple-700 border-purple-500 bg-transparent hover:bg-purple-50' : 'text-slate-400 border-transparent hover:bg-purple-50 hover:text-purple-700'">
                     {{ job.company }}
                 </button>
@@ -122,6 +122,26 @@ const selectedJob = ref(experiences[0])
 </script>
 
 <style scoped>
+.work-experience-panel .company-tab {
+    font-size: 11px !important;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+}
+
+.work-experience-panel h3 {
+    font-size: 14px !important;
+    line-height: 1.3;
+}
+
+.work-experience-panel span,
+.work-experience-panel li span {
+    font-size: 12px !important;
+}
+
+.work-experience-panel .rounded-full {
+    font-size: 10px !important;
+}
+
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity 0.2s ease, transform 0.2s ease;

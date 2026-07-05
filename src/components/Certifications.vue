@@ -1,15 +1,16 @@
 <template>
     <FolderCard title="Certifications & Training">
-        <div class="space-y-3">
+        <div class="allow-xs cert-list space-y-3">
             <div v-for="(cert, index) in certifications" :key="index"
-                 :class="['flex items-center justify-between rounded-lg p-3 cursor-pointer transition-all hover:scale-[1.02] hover:shadow-md border', cert.bgColor, cert.borderColor]"
+                 :class="['cert-card flex items-center justify-between gap-4 rounded-lg p-3 cursor-pointer transition-all hover:scale-[1.02] hover:shadow-md border', cert.bgColor, cert.borderColor]"
+                 :style="certCardStyle(cert)"
                  @click="openModal(cert)">
-                <div>
-                    <h4 class="font-bold text-xs" :class="cert.textColor">{{ cert.title }}</h4>
-                    <p class="text-[10px] font-medium mt-0.5" :class="cert.dateColor">{{ cert.date }}</p>
+                <div class="min-w-0">
+                    <h4 class="cert-title font-bold">{{ cert.title }}</h4>
+                    <p class="cert-date font-medium mt-1">{{ cert.date }}</p>
                 </div>
                 <!-- Optional: Icon to indicate clickability -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-85" :class="cert.textColor" fill="none" viewBox="0 0 24 24"
+                <svg xmlns="http://www.w3.org/2000/svg" class="cert-icon h-4 w-4 shrink-0 opacity-85" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -88,6 +89,12 @@ const certifications = [
         borderColor: "border-orange-500/20",
         textColor: "text-orange-200",
         dateColor: "text-orange-300/70",
+        darkText: "#fed7aa",
+        darkDate: "#fdba74",
+        lightBg: "#fff4e6",
+        lightBorder: "#fdba74",
+        lightText: "#9a3412",
+        lightDate: "#c2410c",
         description: "Completed intensive UI design training focused on usability principles, layout systems, and responsive prototyping.",
         image: imgTesda
     },
@@ -98,6 +105,12 @@ const certifications = [
         borderColor: "border-pink-500/20",
         textColor: "text-pink-200",
         dateColor: "text-pink-300/70",
+        darkText: "#fbcfe8",
+        darkDate: "#f9a8d4",
+        lightBg: "#fdf2f8",
+        lightBorder: "#f9a8d4",
+        lightText: "#9d174d",
+        lightDate: "#be185d",
         description: "Gained foundational knowledge in Linux-based environments, terminal commands, and server configuration.",
         image: imgFligno
     },
@@ -108,6 +121,12 @@ const certifications = [
         borderColor: "border-blue-500/20",
         textColor: "text-blue-200",
         dateColor: "text-blue-300/70",
+        darkText: "#bfdbfe",
+        darkDate: "#93c5fd",
+        lightBg: "#eff6ff",
+        lightBorder: "#93c5fd",
+        lightText: "#1e40af",
+        lightDate: "#1d4ed8",
         description: "Participated in a community-driven event exploring AI-powered applications, integrating Google AI tools and APIs for real-world projects.",
         image: imgGoogle
     },
@@ -118,6 +137,12 @@ const certifications = [
         borderColor: "border-sky-500/20",
         textColor: "text-sky-200",
         dateColor: "text-sky-300/70",
+        darkText: "#bae6fd",
+        darkDate: "#7dd3fc",
+        lightBg: "#f0f9ff",
+        lightBorder: "#7dd3fc",
+        lightText: "#075985",
+        lightDate: "#0369a1",
         description: "Hands-on workshop demonstrating GitHub Copilot for enhanced code generation, debugging, and workflow automation.",
         image: imgVolunteers
     },
@@ -128,6 +153,12 @@ const certifications = [
         borderColor: "border-indigo-500/20",
         textColor: "text-indigo-200",
         dateColor: "text-indigo-300/70",
+        darkText: "#c7d2fe",
+        darkDate: "#a5b4fc",
+        lightBg: "#eef2ff",
+        lightBorder: "#a5b4fc",
+        lightText: "#3730a3",
+        lightDate: "#4338ca",
         description: "Engaged in collaborative sessions on WordPress development, site deployment, and plugin customization for campus projects.",
         image: imgWordPress
     },
@@ -138,12 +169,27 @@ const certifications = [
         borderColor: "border-emerald-500/20",
         textColor: "text-emerald-200",
         dateColor: "text-emerald-300/70",
+        darkText: "#a7f3d0",
+        darkDate: "#6ee7b7",
+        lightBg: "#ecfdf5",
+        lightBorder: "#6ee7b7",
+        lightText: "#065f46",
+        lightDate: "#047857",
         description: "Completed training in FastAPI, Git, Django, and Python fundamentals, gaining hands-on experience in building and documenting scalable RESTful APIs, version control and collaboration, web application development, and core programming concepts.",
         image: imgFastAPI
     }
 ]
 
 const selectedCert = ref(null)
+
+const certCardStyle = (cert) => ({
+    '--cert-dark-text': cert.darkText,
+    '--cert-dark-date': cert.darkDate,
+    '--cert-light-bg': cert.lightBg,
+    '--cert-light-border': cert.lightBorder,
+    '--cert-light-text': cert.lightText,
+    '--cert-light-date': cert.lightDate
+})
 
 const openModal = (cert) => {
     selectedCert.value = cert
@@ -157,13 +203,61 @@ const closeModal = () => {
 </script>
 
 <style scoped>
+.cert-card {
+    min-height: 64px;
+}
+
+.cert-title {
+    color: var(--cert-dark-text);
+    font-size: 12px !important;
+    line-height: 1.35;
+}
+
+.cert-date {
+    color: var(--cert-dark-date);
+    font-size: 11px !important;
+    line-height: 1.25;
+    opacity: 0.82;
+}
+
+.cert-icon {
+    color: var(--cert-dark-text);
+}
+
+.cert-card:hover {
+    box-shadow: 0 10px 24px rgb(0 0 0 / 14%);
+}
 .fade-enter-active,
 .fade-leave-active {
-    transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-    opacity: 0;
+  opacity: 0;
+}
+</style>
+
+<style>
+.theme-light-root .cert-card,
+.theme-light .cert-card {
+  background-color: var(--cert-light-bg) !important;
+  border-color: var(--cert-light-border) !important;
+  box-shadow: 0 8px 20px rgb(88 28 135 / 8%) !important;
+}
+
+.theme-light-root .cert-title,
+.theme-light .cert-title {
+  color: var(--cert-light-text) !important;
+}
+
+.theme-light-root .cert-date,
+.theme-light .cert-date {
+  color: var(--cert-light-date) !important;
+}
+
+.theme-light-root .cert-icon,
+.theme-light .cert-icon {
+  color: var(--cert-light-text) !important;
 }
 </style>

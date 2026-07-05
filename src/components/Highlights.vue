@@ -10,7 +10,7 @@
             imageWidth="300px" :rotateAmplitude="12" :scaleOnHover="1.2" :showMobileWarning="false" :showTooltip="true"
             :displayOverlayContent="true">
             <template #overlay>
-              <p class="tilted-card-demo-text text-white font-bold text-lg drop-shadow-md p-4">
+              <p class="tilted-card-demo-text text-white font-bold text-lg p-4">
                 {{ highlight.text }}
               </p>
             </template>
@@ -108,6 +108,12 @@ onUnmounted(() => {
 
 <style scoped>
 .tilted-card-demo-text {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  color: #ffffff !important;
+  text-shadow: none !important;
+}
+
+:global(.portfolio-shell.theme-light) .tilted-card-demo-text {
+  color: #ffffff !important;
+  text-shadow: none !important;
 }
 </style>
