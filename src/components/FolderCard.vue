@@ -1,6 +1,28 @@
 <template>
-  <div class="folder-card relative w-full"> <!-- Container -->
+  <!-- Light Theme: Clean HTML Folder Card from Vercel -->
+  <div v-if="isLight" class="relative w-full">
+    <!-- Tab -->
+    <div
+      class="folder-tab-wrap-vercel relative z-10 inline-block rounded-t-3xl border border-purple-300 border-b-0 bg-white px-7 py-1 -mb-[1px]">
+      <span class="text-sm font-bold tracking-wide text-purple-500">
+        {{ title }}
+      </span>
+    </div>
 
+    <!-- Right Header Actions Slot -->
+    <div class="absolute top-0 right-0 z-10 p-1">
+      <slot name="header-actions" />
+    </div>
+
+    <!-- Card Body -->
+    <div
+      class="relative rounded-2xl rounded-tl-none border border-purple-300 bg-white/90 p-8 shadow-xl backdrop-blur-md overflow-hidden">
+      <slot />
+    </div>
+  </div>
+
+  <!-- Dark Theme: Custom Animated BorderGlow Folder Card -->
+  <div v-else class="folder-card relative w-full">
     <!-- Tab Wrapper -->
     <div ref="tabRef" class="folder-tab-wrap inline-block relative z-30">
       <BorderGlow
@@ -36,7 +58,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import BorderGlow from './design/BorderGlow.vue'
 
 defineProps({
@@ -49,10 +71,24 @@ defineProps({
 
 const tabRef = ref(null)
 const tabWidth = ref(180) // default fallback
+const isLight = ref(false)
+let observer = null
 
 onMounted(() => {
   if (tabRef.value) {
     tabWidth.value = tabRef.value.offsetWidth
+  }
+
+  isLight.value = document.body.classList.contains('theme-light-root')
+  observer = new MutationObserver(() => {
+    isLight.value = document.body.classList.contains('theme-light-root')
+  })
+  observer.observe(document.body, { attributes: true, attributeFilter: ['class'] })
+})
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
   }
 })
 </script>
@@ -61,11 +97,6 @@ onMounted(() => {
 .folder-card {
   --folder-bg: #120F17;
   --folder-border: rgba(255, 255, 255, 0.1);
-}
-
-:global(.portfolio-shell.theme-light) .folder-card {
-  --folder-bg: #ffffff;
-  --folder-border: rgb(88 28 135 / 22%);
 }
 
 .folder-tab-wrap {
@@ -126,18 +157,23 @@ onMounted(() => {
 .folder-card :deep(.folder-glow-card .border-glow-inner) {
   background: transparent;
 }
-</style>
 
-<style>
-.theme-light-root .folder-card,
-.theme-light .folder-card {
-  --folder-bg: #ffffff !important;
-  --folder-border: rgb(88 28 135 / 22%) !important;
-}
-
-/* Make tab title high-contrast purple-500 in light theme */
-.theme-light-root .folder-tab-title,
-.theme-light .folder-tab-title {
-  color: #a855f7 !important;
+/* Inverted fillet curve at the bottom right of the tab for light theme Vercel card */
+.folder-tab-wrap-vercel::before {
+  content: "";
+  position: absolute;
+  right: -16px;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  z-index: 10;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 16px at 16px 0px,
+    transparent 15px,
+    rgb(216 180 254) 15px, /* purple-300 border-color */
+    rgb(216 180 254) 16px,
+    #ffffff 16px
+  );
 }
 </style>
