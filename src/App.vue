@@ -1,9 +1,14 @@
 <template>
-  <div class="min-h-screen bg-slate-50 flex flex-col relative">
-    <LiquidEther :colors="['#5227FF', '#FF9FFC', '#B19EEF']" :mouseForce="20" :cursorSize="100" :isViscous="true"
+  <div class="min-h-screen bg-[#070312] flex flex-col relative overflow-hidden">
+    <!-- Global SideRays WebGL background -->
+    <SideRays :speed="1.2" rayColor1="#FFFFFF" rayColor2="#96c8ff" :intensity="2.0" :spread="2.2" origin="top-right"
+      :tilt="12" :saturation="1.5" :blend="0.7" :falloff="1.5" :opacity="0.8"
+      class="fixed inset-0 z-0 pointer-events-none opacity-60" />
+
+    <LiquidEther :colors="['#4f1fff', '#FF9FFC', '#886bf2']" :mouseForce="20" :cursorSize="100" :isViscous="true"
       :viscous="30" :iterationsViscous="32" :iterationsPoisson="32" :resolution="0.5" :isBounce="true" :autoDemo="true"
       :autoSpeed="0.5" :autoIntensity="2.2" :takeoverDuration="0.25" :autoResumeDelay="3000" :autoRampDuration="0.6"
-      class="fixed top-0 left-0 z-0" />
+      class="fixed top-0 left-0 z-0 opacity-40" />
     <div class="relative z-10 flex-1 w-full max-w-5xl mx-auto py-10 px-4 md:px-8 space-y-12">
 
       <!-- Top Profile Section -->
@@ -118,194 +123,349 @@
         </div>
       </div>
 
+      <!-- Professional & Client Projects Section -->
+      <ScrollReveal>
+        <BorderGlow
+          className="w-full relative overflow-hidden"
+          :borderRadius="24"
+          glowColor="270 70 60"
+          backgroundColor="#0b0816"
+        >
+          <div class="p-8 space-y-6">
+            <h2 class="text-2xl font-bold text-white lowercase">Professional & Client Projects</h2>
+
+            <ChromaGrid 
+              :radius="340"
+              :damping="0.4"
+              :fadeOut="0.5"
+              ease="power3.out"
+            >
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+
+              <!-- Project: Interviewer Self-Service Portal (iReach Timesheet) -->
+              <BorderGlow className="h-full rounded-xl overflow-hidden relative">
+                <div
+                  class="group flex flex-col justify-between p-6 transition-all hover:-translate-y-1 h-full text-slate-800">
+                  <div class="flex-grow flex flex-col justify-between h-full">
+                    <!-- Text Info -->
+                    <div class="flex-grow flex flex-col justify-start">
+                      <div class="mb-4 flex items-center justify-between text-purple-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor" stroke-width="1.5">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <div class="flex gap-3 items-center">
+                          <span
+                            class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded tracking-wide uppercase">Sybergate
+                            NZ Ltd</span>
+                          <a href="https://timesheet.ipsos.co.nz" target="_blank"
+                            class="text-purple-500 hover:text-purple-700 transition-colors" title="Visit Site">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                      <h3 class="mb-2 text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors">
+                        Interviewer Self-Service Portal <br /> (iReach Timesheet)</h3>
+                      <p class="mb-4 text-sm leading-relaxed text-slate-600">
+                        A secure, responsive timesheet logging system built for Ipsos field interviewers. Features
+                        offline-first entry, detailed time tracking (in-field, admin, travel), receipt uploads, and
+                        real-time validation.
+                      </p>
+                    </div>
+
+                    <!-- Interactive Image Preview Section with Borders -->
+                    <div class="my-4 space-y-3 mt-auto">
+                      <div
+                        class="relative overflow-hidden rounded-lg border-2 border-white/10 bg-white/5 shadow-xs aspect-video">
+                        <img :src="ireachScreenshots[activeScreenshotIdx]"
+                          :alt="'iReach Timesheet screenshot - ' + ireachTitles[activeScreenshotIdx]"
+                          class="w-full h-full object-cover transition-all duration-300" />
+                        <div class="absolute bottom-0 inset-x-0 bg-black/60 px-3 py-1.5 text-center">
+                          <span class="text-[11px] font-bold text-white tracking-wide uppercase">{{
+                            ireachTitles[activeScreenshotIdx] }}</span>
+                        </div>
+                      </div>
+                      <!-- Thumbnails with Borders -->
+                      <div class="flex gap-2.5 justify-center">
+                        <button v-for="(img, idx) in ireachScreenshots" :key="idx" @click="activeScreenshotIdx = idx"
+                          class="w-14 h-9 rounded-md border border-white/10 overflow-hidden transition-all duration-200 hover:scale-105 shadow-xs"
+                          :class="activeScreenshotIdx === idx ? 'border-purple-600 ring-2 ring-purple-100/20 scale-105' : 'border-white/10 hover:border-white/20'"
+                          :title="ireachTitles[idx]">
+                          <img :src="img" :alt="ireachTitles[idx]" class="w-full h-full object-cover" />
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-500 mt-2">
+                      <span>Flutter</span>
+                      <span>Dart</span>
+                      <span>RESTful APIs</span>
+                      <span>Responsive Web</span>
+                    </div>
+                  </div>
+                </div>
+              </BorderGlow>
+
+              <!-- Project: SureLife Client Project -->
+              <BorderGlow className="h-full rounded-xl overflow-hidden relative">
+                <div
+                  class="group flex flex-col justify-between p-6 transition-all hover:-translate-y-1 h-full text-slate-800">
+                  <div class="flex-grow flex flex-col justify-between h-full">
+                    <!-- Text Info -->
+                    <div class="flex-grow flex flex-col justify-start">
+                      <div class="mb-4 flex items-center justify-between text-purple-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor" stroke-width="1.5">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                        </svg>
+                        <div class="flex gap-3 items-center">
+                          <span
+                            class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded tracking-wide uppercase border border-purple-800/30">Just
+                            Click IT Solution</span>
+                          <a href="https://surelifenetworkglobal.co/slc" target="_blank"
+                            class="text-purple-400 hover:text-purple-300 transition-colors" title="Visit Site">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor" stroke-width="2">
+                              <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                            </svg>
+                          </a>
+                        </div>
+                      </div>
+                      <h3 class="mb-2 text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors">
+                        SureLife Client Project</h3>
+                      <p class="mb-4 text-sm leading-relaxed text-slate-600">
+                        A professional healthcare and insurance administration system (SureLife) developed during my time at
+                        Just Click IT Solution in Cebu, delivering high-quality software solutions and technical expertise.
+                      </p>
+                    </div>
+
+                    <!-- Screenshot with Borders -->
+                    <div class="my-4 space-y-3 mt-auto">
+                      <div
+                        class="relative overflow-hidden rounded-lg border-2 border-white/10 bg-white/5 shadow-xs aspect-video">
+                        <img :src="surelifeProjectImage" alt="SureLife Project screenshot"
+                          class="w-full h-full object-cover" />
+                      </div>
+                      <!-- Invisible thumbnail placeholders to align with left card -->
+                      <div class="flex gap-2.5 justify-center invisible select-none pointer-events-none">
+                        <div class="w-14 h-9 rounded-md border border-transparent"></div>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-500 mt-2">
+                      <span>C#</span>
+                      <span>ASP.NET</span>
+                      <span>ReactJS</span>
+                      <span>Python</span>
+                    </div>
+                  </div>
+                </div>
+              </BorderGlow>
+
+            </div>
+          </ChromaGrid>
+        </div>
+      </BorderGlow>
+    </ScrollReveal>
+
       <!-- School & Personal Projects Section -->
       <div class="space-y-6">
-        <ScrollReveal>
-          <h2 class="text-2xl font-bold text-slate-800">School & Personal Projects</h2>
-        </ScrollReveal>
-
         <!-- Featured Project Spotlight -->
         <ScrollReveal>
           <ProjectSpotlight />
         </ScrollReveal>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-
-          <!-- Project 1: Siargao Travel Website -->
-          <ScrollReveal :delay="100">
-            <div
-              class="group flex flex-col justify-between rounded-xl bg-purple-50 p-6 transition-all hover:-translate-y-1 hover:shadow-md h-full">
-              <div>
-                <div class="mb-4 flex items-center justify-between text-purple-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                  </svg>
-                  <div class="flex gap-3">
-                    <a href="https://github.com/Araanna/Siargao-Travel-and-Tour-Website" target="_blank"
-                      class="hover:text-purple-800">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                          d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                    </a>
+        <!-- Bento Grid Showcase -->
+        <ScrollReveal :delay="100">
+          <MagicBento
+            :textAutoHide="false"
+            :enableStars="true"
+            :enableSpotlight="true"
+            :enableBorderGlow="true"
+            :enableTilt="false"
+            :enableMagnetism="true"
+            :clickEffect="true"
+            :spotlightRadius="290"
+            :particleCount="12"
+            glowColor="192, 132, 252"
+            :disableAnimations="false"
+          >
+            <!-- Card 1: Siargao Travel Website (Small) -->
+            <BentoCard
+              :enableTilt="false"
+              :enableMagnetism="true"
+              :clickEffect="true"
+              glowColor="192, 132, 252"
+              className="dark-glow-card lg:col-span-2"
+            >
+              <div class="group flex flex-col justify-between h-full text-slate-100">
+                <div class="flex-grow flex flex-col justify-between">
+                  <div class="mb-4 flex items-center justify-between text-purple-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 002 2h2m.358-5.363a9 9 0 11-12.727 0M16.5 16.5L19 19" />
+                    </svg>
+                    <div class="flex gap-3">
+                      <a href="https://github.com/Araanna/IT-133-Siargao" target="_blank"
+                        class="hover:text-purple-300 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                      </a>
+                      <a href="https://siargaotravel.netlify.app" target="_blank"
+                        class="hover:text-purple-300 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
+                    </div>
                   </div>
+                  <h3 class="mb-2 text-lg font-bold text-slate-100 group-hover:text-purple-300 transition-colors">Siargao
+                    Travel Website</h3>
+                  <p class="mb-4 text-xs leading-relaxed text-slate-300">
+                    A beautiful tourist landing guide highlighting the islands, surfing spots, and resorts of Siargao,
+                    designed for responsive web.
+                  </p>
                 </div>
-                <h3 class="mb-2 text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors">Siargao
-                  Travel Website</h3>
-                <p class="mb-4 text-sm leading-relaxed text-slate-600">
-                  Responsive travel booking website allowing users to browse destinations and book tours securely.
-                </p>
-              </div>
-              <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-500">
-                <span>VueJS</span>
-                <span>PHP</span>
-                <span>MySQL</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <!-- Project 2: Student Expense Tracker -->
-          <ScrollReveal :delay="200">
-            <div
-              class="group flex flex-col justify-between rounded-xl bg-purple-50 p-6 transition-all hover:-translate-y-1 hover:shadow-md h-full">
-              <div>
-                <div class="mb-4 flex items-center justify-between text-purple-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                  </svg>
-                  <div class="flex gap-3">
-                    <a href="https://github.com/Araanna/FASTAPI-PHINMA-COC-STUDENT-EXPENSE-TRACKER" target="_blank"
-                      class="hover:text-purple-800">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                          d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-                <h3 class="mb-2 text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors">Student
-                  Expense Tracker</h3>
-                <p class="mb-4 text-sm leading-relaxed text-slate-600">
-                  Mobile budgeting app enabling students to track expenses and set budgets with transaction APIs.
-                </p>
-              </div>
-              <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-500">
-                <span>Flutter</span>
-                <span>FastAPI</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-
-
-          <!-- Project 4: Unity RPG Game -->
-          <ScrollReveal :delay="300">
-            <div
-              class="group flex flex-col justify-between rounded-xl bg-purple-50 p-6 transition-all hover:-translate-y-1 hover:shadow-md h-full">
-              <div>
-                <div class="mb-4 flex items-center justify-between text-purple-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                  </svg>
-                  <div class="flex gap-3">
-                    <a href="https://github.com/Araanna/gamedev_website" target="_blank" class="hover:text-purple-800">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                          d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-                <h3 class="mb-2 text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors">Unity
-                  RPG
-                  Game</h3>
-                <p class="mb-4 text-sm leading-relaxed text-slate-600">
-                  2D platformer RPG built in Unity, implementing animation, collision detection, and player movement.
-                </p>
-              </div>
-              <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-500">
-                <span>Unity</span>
-                <span>C#</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <!-- Project 3: Reservation Monitoring System (Moved) -->
-          <ScrollReveal :delay="400">
-            <div
-              class="group flex flex-col justify-between rounded-xl bg-purple-50 overflow-hidden transition-all hover:-translate-y-1 hover:shadow-md h-full">
-
-              <!-- Top Section: Icons (Lighter) -->
-              <div class="p-6 pb-0">
-                <div class="mb-4 flex items-center justify-between text-purple-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                  </svg>
-                  <div class="flex gap-3">
-                    <a href="https://github.com/Araanna/IT-DAYS-WEB-APP" target="_blank" class="hover:text-purple-800">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                          d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                      </svg>
-                    </a>
-                  </div>
+                <div class="flex flex-wrap gap-2 text-[10px] font-medium text-slate-400">
+                  <span>HTML5</span>
+                  <span>Bootstrap CSS</span>
+                  <span>JavaScript</span>
                 </div>
               </div>
+            </BentoCard>
 
-              <!-- Bottom Section: Info (Darker) -->
-              <div class="bg-purple-100/60 p-6 pt-4 mt-auto">
-                <h3 class="mb-2 text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors">
-                  Reservation Monitoring System</h3>
-                <p class="mb-4 text-sm leading-relaxed text-slate-600">
-                  Capstone project implementing a full-scale reservation and monitoring system for campus facilities,
-                  significantly improving administrative efficiency.
-                </p>
-                <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-500">
+            <!-- Card 2: Student Expense Tracker (Small) -->
+            <BentoCard
+              :enableTilt="false"
+              :enableMagnetism="true"
+              :clickEffect="true"
+              glowColor="192, 132, 252"
+              className="dark-glow-card lg:col-span-2"
+            >
+              <div class="group flex flex-col justify-between h-full text-slate-100">
+                <div class="flex-grow flex flex-col justify-between">
+                  <div class="mb-4 flex items-center justify-between text-purple-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
+                    <div class="flex gap-3">
+                      <a href="https://github.com/Araanna/FASTAPI-PHINMA-COC-STUDENT-EXPENSE-TRACKER" target="_blank"
+                        class="hover:text-purple-300 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <h3 class="mb-2 text-lg font-bold text-slate-100 group-hover:text-purple-300 transition-colors">Student
+                    Expense Tracker</h3>
+                  <p class="mb-4 text-xs leading-relaxed text-slate-300">
+                    Mobile budgeting app enabling students to track expenses and set budgets with transaction APIs.
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-[10px] font-medium text-slate-400">
+                  <span>Flutter</span>
+                  <span>FastAPI</span>
+                </div>
+              </div>
+            </BentoCard>
+
+            <!-- Card 3: Unity RPG Game (Small) -->
+            <BentoCard
+              :enableTilt="false"
+              :enableMagnetism="true"
+              :clickEffect="true"
+              glowColor="192, 132, 252"
+              className="dark-glow-card lg:col-span-1"
+            >
+              <div class="group flex flex-col justify-between h-full text-slate-100">
+                <div class="flex-grow flex flex-col justify-between">
+                  <div class="mb-4 flex items-center justify-between text-purple-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
+                    <div class="flex gap-3">
+                      <a href="https://github.com/Araanna/gamedev_website" target="_blank"
+                        class="hover:text-purple-300 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <h3 class="mb-2 text-lg font-bold text-slate-100 group-hover:text-purple-300 transition-colors">Unity
+                    RPG Game</h3>
+                  <p class="mb-4 text-xs leading-relaxed text-slate-300">
+                    2D platformer RPG built in Unity, implementing animation, collision detection, and player movement.
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-[10px] font-medium text-slate-400">
+                  <span>Unity</span>
+                  <span>C#</span>
+                </div>
+              </div>
+            </BentoCard>
+
+            <!-- Card 4: Reservation Monitoring System (Small) -->
+            <BentoCard
+              :enableTilt="false"
+              :enableMagnetism="true"
+              :clickEffect="true"
+              glowColor="192, 132, 252"
+              className="dark-glow-card lg:col-span-3"
+            >
+              <div class="group flex flex-col justify-between h-full text-slate-100">
+                <div class="flex-grow flex flex-col justify-between">
+                  <div class="mb-4 flex items-center justify-between text-purple-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+                      stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                    </svg>
+                    <div class="flex gap-3">
+                      <a href="https://github.com/Araanna/IT-DAYS-WEB-APP" target="_blank"
+                        class="hover:text-purple-300 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                  <h3 class="mb-2 text-lg font-bold text-slate-100 group-hover:text-purple-300 transition-colors">
+                    Reservation Monitoring System</h3>
+                  <p class="mb-4 text-xs leading-relaxed text-slate-300">
+                    Capstone project implementing a full-scale reservation and monitoring system for campus facilities,
+                    significantly improving administrative efficiency.
+                  </p>
+                </div>
+                <div class="flex flex-wrap gap-2 text-[10px] font-medium text-slate-400">
                   <span>Flutter</span>
                   <span>ReactJS</span>
                   <span>PHP</span>
                 </div>
               </div>
-            </div>
-          </ScrollReveal>
-
-          <!-- Project 5: Cebu Client Project -->
-          <ScrollReveal :delay="500">
-            <div
-              class="group flex flex-col justify-between rounded-xl bg-purple-50 p-6 transition-all hover:-translate-y-1 hover:shadow-md h-full">
-              <div>
-                <div class="mb-4 flex items-center justify-between text-purple-600">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                      d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
-                  </svg>
-                </div>
-                <h3 class="mb-2 text-lg font-bold text-slate-800 group-hover:text-purple-600 transition-colors">
-                  Client-Based Project (Cebu)</h3>
-                <p class="mb-4 text-sm leading-relaxed text-slate-600">
-                  A professional client project developed during my years working in Cebu, delivering high-quality
-                  software solutions and technical expertise.
-                </p>
-              </div>
-              <div class="flex flex-wrap gap-2 text-xs font-medium text-slate-500">
-                <span>C#</span>
-                <span>ASP.NET</span>
-                <span>ReactJS</span>
-                <span>Python</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-        </div>
+            </BentoCard>
+          </MagicBento>
+        </ScrollReveal>
       </div>
 
       <ScrollReveal :delay="200">
@@ -313,7 +473,7 @@
       </ScrollReveal>
     </div>
 
-    <div ref="footerRef" class="relative z-[60] bg-slate-50">
+    <div ref="footerRef" class="relative z-[60] bg-[#070312]">
       <Footer />
     </div>
 
@@ -325,18 +485,54 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import ProfileCard from './components/ProfileCard.vue'
 import Certifications from './components/Certifications.vue'
 import WorkExperience from './components/WorkExperience.vue'
+import BorderGlow from './components/design/BorderGlow.vue'
+import MagicBento from './components/design/MagicBento.vue'
+import BentoCard from './components/design/BentoCard.vue'
+import ChromaGrid from './components/design/ChromaGrid.vue'
+
+const clientProjectItems = computed(() => [
+  {
+    image: ireachDashboard,
+    title: "Interviewer Self-Service Portal (iReach)",
+    subtitle: "Flutter • Dart • RESTful APIs • Responsive Web. Features offline-first entry, detailed time tracking, receipt uploads, and real-time validation.",
+    handle: "Sybergate NZ Ltd",
+    borderColor: "#a855f7",
+    gradient: "linear-gradient(145deg, #4f1fff, #120F17)",
+    url: "https://timesheet.ipsos.co.nz"
+  },
+  {
+    image: surelifeProjectImage,
+    title: "SureLife Client Project",
+    subtitle: "C# • ASP.NET • ReactJS • Python. A professional healthcare and insurance administration system delivering high-quality client solutions.",
+    handle: "Just Click IT Solution",
+    borderColor: "#ec4899",
+    gradient: "linear-gradient(145deg, #ec4899, #120F17)",
+    url: "https://surelifenetworkglobal.co/slc"
+  }
+])
 
 import FolderCard from './components/FolderCard.vue'
 import Highlights from './components/Highlights.vue'
 import Footer from './components/Footer.vue'
 import ProjectSpotlight from './components/ProjectSpotlight.vue'
-import GradualBlur from './components/GradualBlur.vue'
-import LiquidEther from './components/LiquidEther.vue'
-import ScrollReveal from './components/ScrollReveal.vue'
+import GradualBlur from './components/design/GradualBlur.vue'
+import LiquidEther from './components/design/LiquidEther.vue'
+import ScrollReveal from './components/design/ScrollReveal.vue'
+import SideRays from './components/design/SideRays.vue'
+
+// Import iReach client project screenshots
+import ireachLogin from './assets/images/ireach_login.png'
+import ireachDashboard from './assets/images/ireach_dashboard.png'
+import ireachTimesheet from './assets/images/ireach_timesheet.png'
+import surelifeProjectImage from './assets/images/CebuProject.png'
+
+const ireachScreenshots = [ireachLogin, ireachDashboard, ireachTimesheet]
+const ireachTitles = ["Login Page", "Dashboard Overview", "Timesheet Form"]
+const activeScreenshotIdx = ref(1) // Default to dashboard screenshot
 
 const footerRef = ref(null)
 const isFooterVisible = ref(false)

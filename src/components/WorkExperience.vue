@@ -4,9 +4,9 @@
             <!-- Sidebar (Company List) -->
             <!-- Sidebar (Company List) -->
             <div
-                class="md:w-1/3 flex md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-2 md:pb-0 border-b md:border-b-0 md:border-r border-slate-200 pr-0">
+                class="md:w-1/3 flex md:flex-col gap-1 overflow-x-auto md:overflow-visible pb-2 md:pb-0 border-b-0 md:border-r border-slate-200 pr-0">
                 <button v-for="(job, index) in experiences" :key="index" @click="selectedJob = job"
-                    class="group px-4 py-3 text-left text-xs font-bold tracking-wide transition-all duration-200 border-r-2 md:border-r-4 md:border-l-0 md:mr-[-2px] uppercase whitespace-nowrap md:whitespace-normal"
+                    class="group px-4 py-3 text-left text-xs font-bold tracking-wide transition-all duration-200 border-0 border-b-2 md:border-b-0 md:border-r-4 md:border-l-0 md:mr-[-2px] mb-[-1px] md:mb-0 uppercase whitespace-nowrap md:whitespace-normal"
                     :class="selectedJob.company === job.company ? 'text-purple-700 border-purple-500 bg-transparent hover:bg-purple-50' : 'text-slate-400 border-transparent hover:bg-purple-50 hover:text-purple-700'">
                     {{ job.company }}
                 </button>
@@ -56,13 +56,26 @@ import FolderCard from './FolderCard.vue'
 
 const experiences = [
     {
+        company: "Sybergate NZ Ltd",
+        role: "Mobile/Frontend Developer",
+        date: "2026 – Present",
+        location: "Remote | Auckland, NZ",
+        points: [
+            "Developing and maintaining the Ipsos Timesheet App (Interviewer Self-Service Portal) using Flutter and Dart, supporting robust offline timesheet logging for field interviewers.",
+            "Implementing responsive layout designs, security measures, and validation for in-field working hours, administrative task times, and travel data.",
+            "Collaborating on RESTful API integrations with backend services using Riverpod state management and Dio client.",
+            "Partnering with Auckland-based management to design user-centered workflows that improve timesheet approval efficiency."
+        ],
+        tech: ["Flutter", "Dart", "Riverpod", "Dio", "REST APIs", "Mobile Dev"]
+    },
+    {
         company: "Just Click IT Solution",
         role: "Fullstack Developer",
         date: "2023 – 2025",
         location: "Remote | Cebu City",
         points: [
+            "Developed user-centered web applications using React.js and modern frontend best practices, including the SureLife healthcare admin system.",
             "Designed responsive UI/UX layouts using Figma, ensuring intuitive and user-friendly interfaces.",
-            "Developed user-centered web applications using React.js and modern frontend best practices.",
             "Implemented SEO optimization techniques to improve search engine visibility and performance.",
             "Conducted end-to-end (E2E) testing using Cypress to ensure application reliability.",
             "Managed cloud deployment and hosting using cPanel.",

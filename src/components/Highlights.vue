@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import TiltedCard from './TiltedCard.vue'
+import TiltedCard from './design/TiltedCard.vue'
 import imageMtKulago from '../assets/images/image 5.jpg'
 import imageBohol from '../assets/images/image.png'
 import imageGameExpo from '../assets/images/IMG_4199.JPG'

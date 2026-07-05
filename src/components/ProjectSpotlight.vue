@@ -1,7 +1,12 @@
 <template>
     <div class="w-full mb-12 flex flex-col items-center gap-6">
         <div
-            class="w-full relative rounded-3xl overflow-hidden bg-[#1a0b2e] text-white shadow-2xl h-[500px] md:h-[600px] flex flex-col items-center justify-end p-8 pb-4 md:p-12 md:pb-6 group transition-all duration-500 font-['Outfit']">
+            class="w-full relative rounded-3xl overflow-hidden bg-[#130924] border border-purple-500/10 text-white shadow-2xl h-[500px] md:h-[600px] flex flex-col items-center justify-end p-8 pb-4 md:p-12 md:pb-6 group transition-all duration-500 font-['Outfit']">
+
+            <!-- Floating Section Title -->
+            <h2 class="absolute top-6 left-6 md:top-8 md:left-8 z-10 text-lg md:text-2xl font-bold text-white/90 lowercase tracking-wide">
+                school & personal projects
+            </h2>
 
             <!-- Dynamic Background Image with Purple Overlay -->
             <div class="absolute inset-0 z-0">
@@ -102,14 +107,13 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import GradualBlur from './GradualBlur.vue'
+import GradualBlur from './design/GradualBlur.vue'
 
 // Import images
 import imgMobile from '../assets/images/Mobile.png'
 import imgGame from '../assets/images/Game.png'
 import imgAMS from '../assets/images/AMS.png'
 import imgGSD from '../assets/images/GSD.png'
-import imgCebu from '../assets/images/CebuProject.png'
 
 const currentIndex = ref(0)
 const projects = [
@@ -140,13 +144,6 @@ const projects = [
         tech: ["Unity", "C#"],
         image: imgGame,
         link: "https://github.com/Araanna/gamedev_website"
-    },
-    {
-        title: "Client-Based Project (Cebu)",
-        description: "A professional client project developed during my years working in Cebu, delivering high-quality software solutions and technical expertise.",
-        tech: ["C#", "ASP.NET", "ReactJS", "Python"],
-        image: imgCebu,
-        link: null
     }
 ]
 

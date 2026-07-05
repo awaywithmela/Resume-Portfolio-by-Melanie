@@ -2,14 +2,14 @@
     <FolderCard title="Certifications & Training">
         <div class="space-y-3">
             <div v-for="(cert, index) in certifications" :key="index"
-                :class="['flex items-center justify-between rounded-lg p-2 cursor-pointer transition-all hover:scale-[1.02] hover:shadow-md', cert.bgColor]"
-                @click="openModal(cert)">
+                 :class="['flex items-center justify-between rounded-lg p-3 cursor-pointer transition-all hover:scale-[1.02] hover:shadow-md border', cert.bgColor, cert.borderColor]"
+                 @click="openModal(cert)">
                 <div>
-                    <h4 class="font-bold text-slate-800 text-xs">{{ cert.title }}</h4>
-                    <p class="text-[10px] text-slate-500">{{ cert.date }}</p>
+                    <h4 class="font-bold text-xs" :class="cert.textColor">{{ cert.title }}</h4>
+                    <p class="text-[10px] font-medium mt-0.5" :class="cert.dateColor">{{ cert.date }}</p>
                 </div>
                 <!-- Optional: Icon to indicate clickability -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24"
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-85" :class="cert.textColor" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -84,42 +84,60 @@ const certifications = [
     {
         title: "User Interface Designer (TESDA)",
         date: "Aug 2024",
-        bgColor: "bg-orange-50/50",
+        bgColor: "bg-orange-500/10",
+        borderColor: "border-orange-500/20",
+        textColor: "text-orange-200",
+        dateColor: "text-orange-300/70",
         description: "Completed intensive UI design training focused on usability principles, layout systems, and responsive prototyping.",
         image: imgTesda
     },
     {
         title: "Linux Fundamentals (Fligno)",
         date: "Sep 2022",
-        bgColor: "bg-slate-100/50",
+        bgColor: "bg-pink-500/10",
+        borderColor: "border-pink-500/20",
+        textColor: "text-pink-200",
+        dateColor: "text-pink-300/70",
         description: "Gained foundational knowledge in Linux-based environments, terminal commands, and server configuration.",
         image: imgFligno
     },
     {
         title: "Build with AI 2025 (Google Developer Group CDO)",
         date: "May 2025",
-        bgColor: "bg-blue-50/50",
+        bgColor: "bg-blue-500/10",
+        borderColor: "border-blue-500/20",
+        textColor: "text-blue-200",
+        dateColor: "text-blue-300/70",
         description: "Participated in a community-driven event exploring AI-powered applications, integrating Google AI tools and APIs for real-world projects.",
         image: imgGoogle
     },
     {
         title: "Copilot CDO: AI-Powered Coding for Everyone (DevCon CDO)",
         date: "Aug 2025",
-        bgColor: "bg-sky-50/50",
+        bgColor: "bg-sky-500/10",
+        borderColor: "border-sky-500/20",
+        textColor: "text-sky-200",
+        dateColor: "text-sky-300/70",
         description: "Hands-on workshop demonstrating GitHub Copilot for enhanced code generation, debugging, and workflow automation.",
         image: imgVolunteers
     },
     {
         title: "WordPress Campus Connect (WordPress CDO)",
         date: "July 2025",
-        bgColor: "bg-indigo-50/50",
+        bgColor: "bg-indigo-500/10",
+        borderColor: "border-indigo-500/20",
+        textColor: "text-indigo-200",
+        dateColor: "text-indigo-300/70",
         description: "Engaged in collaborative sessions on WordPress development, site deployment, and plugin customization for campus projects.",
         image: imgWordPress
     },
     {
         title: "FASTAPI (UDEMY)",
         date: "Nov 28, 2025",
-        bgColor: "bg-emerald-50/50",
+        bgColor: "bg-emerald-500/10",
+        borderColor: "border-emerald-500/20",
+        textColor: "text-emerald-200",
+        dateColor: "text-emerald-300/70",
         description: "Completed training in FastAPI, Git, Django, and Python fundamentals, gaining hands-on experience in building and documenting scalable RESTful APIs, version control and collaboration, web application development, and core programming concepts.",
         image: imgFastAPI
     }

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://resume-portfolio-by-melanie.vercel.app/sitemap.xml
