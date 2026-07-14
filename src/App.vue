@@ -82,43 +82,6 @@
             <WorkExperience />
           </ScrollReveal>
 
-          <!-- Community & Leadership -->
-          <ScrollReveal :delay="200">
-            <div class="community-leadership allow-xs">
-              <FolderCard title="Community & Leadership">
-                <!-- Item 1 -->
-                <div class="mb-5">
-                  <div class="flex justify-between items-center mb-1">
-                    <h3 class="font-bold text-slate-800 text-sm">Volunteer Coach</h3>
-                    <span class="rounded-lg bg-pink-100 px-2 py-0.5 text-[10px] font-bold text-pink-600">July 2025</span>
-                  </div>
-                  <p class="text-xs text-slate-500 italic mb-1">Django Girls CDO</p>
-                  <p class="text-xs text-slate-600">Guided first-time developers in building Python/Django apps.</p>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="mb-5">
-                  <div class="flex justify-between items-center mb-1">
-                    <h3 class="font-bold text-slate-800 text-sm">Fullstack Bootcamp</h3>
-                    <span class="rounded-lg bg-blue-100 px-2 py-0.5 text-[10px] font-bold text-blue-600">May 2024</span>
-                  </div>
-                  <p class="text-xs text-slate-500 italic mb-1">Fligno</p>
-                  <p class="text-xs text-slate-600">Backend with Laravel, Frontend with React/Redux.</p>
-                </div>
-
-                <!-- Item 3 -->
-                <div>
-                  <div class="flex justify-between items-center mb-1">
-                    <h3 class="font-bold text-slate-800 text-sm">SBO Associate Treasurer</h3>
-                    <span class="rounded-lg bg-green-100 px-2 py-0.5 text-[10px] font-bold text-green-600">July
-                      2021</span>
-                  </div>
-                  <p class="text-xs text-slate-500 italic mb-1">Student Body Organization</p>
-                  <p class="text-xs text-slate-600">Financial management and event planning.</p>
-                </div>
-              </FolderCard>
-            </div>
-          </ScrollReveal>
         </div>
 
         <!-- Right Column -->
@@ -174,6 +137,44 @@
                 <span class="px-3 py-1 bg-indigo-50 text-indigo-500 rounded-full text-xs font-semibold">Figma</span>
               </div>
             </FolderCard>
+          </ScrollReveal>
+
+          <!-- Community & Leadership -->
+          <ScrollReveal :delay="400">
+            <div class="community-leadership allow-xs">
+              <FolderCard title="Community & Leadership">
+                <!-- Item 1 -->
+                <div class="mb-5">
+                  <div class="flex justify-between items-center mb-1">
+                    <h3 class="font-bold text-slate-800 text-sm">Volunteer Coach</h3>
+                    <span class="rounded-lg bg-pink-100 px-2 py-0.5 text-[10px] font-bold text-pink-600">July 2025</span>
+                  </div>
+                  <p class="text-xs text-slate-500 italic mb-1">Django Girls CDO</p>
+                  <p class="text-xs text-slate-600">Guided first-time developers in building Python/Django apps.</p>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="mb-5">
+                  <div class="flex justify-between items-center mb-1">
+                    <h3 class="font-bold text-slate-800 text-sm">Fullstack Bootcamp</h3>
+                    <span class="rounded-lg bg-blue-100 px-2 py-0.5 text-[10px] font-bold text-blue-600">May 2024</span>
+                  </div>
+                  <p class="text-xs text-slate-500 italic mb-1">Fligno</p>
+                  <p class="text-xs text-slate-600">Backend with Laravel, Frontend with React/Redux.</p>
+                </div>
+
+                <!-- Item 3 -->
+                <div>
+                  <div class="flex justify-between items-center mb-1">
+                    <h3 class="font-bold text-slate-800 text-sm">SBO Associate Treasurer</h3>
+                    <span class="rounded-lg bg-green-100 px-2 py-0.5 text-[10px] font-bold text-green-600">July
+                      2021</span>
+                  </div>
+                  <p class="text-xs text-slate-500 italic mb-1">Student Body Organization</p>
+                  <p class="text-xs text-slate-600">Financial management and event planning.</p>
+                </div>
+              </FolderCard>
+            </div>
           </ScrollReveal>
         </div>
       </div>
