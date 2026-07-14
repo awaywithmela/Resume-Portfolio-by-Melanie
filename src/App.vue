@@ -7,24 +7,38 @@
     :duration="400"
   >
     <div
-      class="portfolio-shell min-h-screen bg-[#070312] flex flex-col relative overflow-hidden transition-colors duration-500"
-      :class="{ 'theme-light': isLightTheme }"
+      class="portfolio-shell min-h-screen flex flex-col relative overflow-hidden transition-colors duration-500"
+      :class="isLightTheme ? 'theme-light bg-slate-50' : 'bg-[#070312]'"
+      :style="{ backgroundColor: isLightTheme ? '#f8fafc' : '#070312' }"
       @dblclick="toggleTheme"
     >
-    <!-- Global SideRays WebGL background -->
-    <SideRays :speed="1.2" rayColor1="#FFFFFF" rayColor2="#96c8ff" :intensity="2.0" :spread="2.2" origin="top-right"
-      :tilt="12" :saturation="1.5" :blend="0.7" :falloff="1.5" :opacity="0.8"
-      class="fixed inset-0 z-0 pointer-events-none opacity-60 transition-opacity duration-500"
-      :class="{ 'opacity-0': isLightTheme }" />
+    <button
+      type="button"
+      class="theme-toggle-btn fixed right-4 top-4 z-[80] flex items-center gap-2 rounded-full border px-3 py-2 text-xs font-bold uppercase tracking-wide shadow-lg backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5"
+      :aria-label="isLightTheme ? 'Switch to dark theme' : 'Switch to light theme'"
+      :title="isLightTheme ? 'Switch to dark theme' : 'Switch to light theme'"
+      @click.stop="toggleTheme"
+      @dblclick.stop
+    >
+      <span aria-hidden="true">{{ isLightTheme ? '☾' : '☼' }}</span>
+      <span>{{ isLightTheme ? 'Dark' : 'Light' }}</span>
+    </button>
 
-    <LiquidEther :colors="['#4f1fff', '#FF9FFC', '#886bf2']" :mouseForce="20" :cursorSize="100" :isViscous="true"
+    <!-- Global SideRays WebGL background -->
+    <SideRays v-if="!isLightTheme" :speed="1.2" rayColor1="#FFFFFF" rayColor2="#96c8ff" :intensity="2.0" :spread="2.2" origin="top-right"
+      :tilt="12" :saturation="1.5" :blend="0.7" :falloff="1.5" :opacity="0.8"
+      class="fixed inset-0 z-0 pointer-events-none opacity-60 transition-opacity duration-500" />
+
+    <LiquidEther v-if="!isLightTheme" :colors="['#4f1fff', '#FF9FFC', '#886bf2']" :mouseForce="20" :cursorSize="100" :isViscous="true"
       :viscous="30" :iterationsViscous="32" :iterationsPoisson="32" :resolution="0.5" :isBounce="true" :autoDemo="true"
       :autoSpeed="0.5" :autoIntensity="2.2" :takeoverDuration="0.25" :autoResumeDelay="3000" :autoRampDuration="0.6"
-      class="fixed top-0 left-0 z-0 opacity-40 transition-opacity duration-500"
-      :class="{ 'opacity-0': isLightTheme }" />
+      class="fixed top-0 left-0 z-0 opacity-40 transition-opacity duration-500" />
 
     <!-- Global PixelBlast, constrained to the lower half of the viewport -->
-    <div class="pixel-blast-layer fixed inset-x-0 bottom-0 h-[50vh] z-[1] pointer-events-none opacity-85">
+    <div
+      v-if="!isLightTheme"
+      class="pixel-blast-layer fixed inset-x-0 bottom-0 h-[50vh] z-[1] pointer-events-none opacity-85 transition-opacity duration-500"
+    >
       <PixelBlast
         variant="square"
         :pixelSize="6"
@@ -170,7 +184,7 @@
           className="professional-projects allow-xs w-full relative overflow-hidden"
           :borderRadius="24"
           glowColor="270 70 60"
-          backgroundColor="#0b0816"
+          :backgroundColor="isLightTheme ? '#ffffff' : '#0b0816'"
         >
           <div class="p-8 space-y-6">
             <h2 class="text-2xl font-bold text-white lowercase">Professional & Client Projects</h2>
@@ -184,7 +198,7 @@
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
 
               <!-- Project: Interviewer Self-Service Portal (iReach Timesheet) -->
-              <BorderGlow className="h-full rounded-xl overflow-hidden relative">
+              <BorderGlow className="h-full rounded-xl overflow-hidden relative" :backgroundColor="isLightTheme ? '#ffffff' : '#120F17'">
                 <div
                   class="group flex flex-col justify-between p-6 transition-all hover:-translate-y-1 h-full text-slate-800">
                   <div class="flex-grow flex flex-col justify-between h-full">
@@ -253,7 +267,7 @@
               </BorderGlow>
 
               <!-- Project: SureLife Client Project -->
-              <BorderGlow className="h-full rounded-xl overflow-hidden relative">
+              <BorderGlow className="h-full rounded-xl overflow-hidden relative" :backgroundColor="isLightTheme ? '#ffffff' : '#120F17'">
                 <div
                   class="group flex flex-col justify-between p-6 transition-all hover:-translate-y-1 h-full text-slate-800">
                   <div class="flex-grow flex flex-col justify-between h-full">
@@ -521,7 +535,7 @@
     <!-- Global Bottom Gradual Blur -->
     <GradualBlur target="page" position="bottom" height="6rem" :strength="2" :divCount="5" :zIndex="50"
       class="fixed bottom-0 left-0 w-full pointer-events-none transition-opacity duration-300"
-      :style="{ opacity: isFooterVisible ? 0 : 1 }" />
+      :style="{ opacity: isLightTheme || isFooterVisible ? 0 : 1 }" />
   </div>
   </ClickSpark>
 </template>

@@ -242,8 +242,8 @@ const closeModal = () => {
 .theme-light-root .cert-card,
 .theme-light .cert-card {
   background-color: var(--cert-light-bg) !important;
-  border-color: var(--cert-light-border) !important;
-  box-shadow: 0 8px 20px rgb(88 28 135 / 8%) !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .theme-light-root .cert-title,
